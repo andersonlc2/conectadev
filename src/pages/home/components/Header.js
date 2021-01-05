@@ -45,7 +45,7 @@ function Header () {
                         NOVO POST
                     </Button>
                     <SvgIcon className={classes.bell}>
-                        <Bell></Bell>
+                        <Bell />
                     </SvgIcon>
                     <Avatar alt="Remy Sharp" src="#" />
                 </div>

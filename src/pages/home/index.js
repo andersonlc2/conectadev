@@ -22,8 +22,7 @@ const useStyles = makeStyles({
     }
 })
 
-
-function Home () {
+function Home() {
     const classes = useStyles()
 
     return (
@@ -41,6 +40,5 @@ function Home () {
         </div>
     )
 }
-
 
 export default Home;

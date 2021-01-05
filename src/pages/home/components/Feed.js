@@ -53,7 +53,6 @@ function Feed () {
                     <PostCard key={ post.id } post={ post }/>
                 ))
             }
-
         </div>
     )
 }
