@@ -10,15 +10,15 @@ export default {
     letterSpacing: '-0.24px'
   },
   h3: {
-    fonteSize: 24,
+    fontSize: 24,
     letterSpacing: '-0.06px'
   },
   h4: {
-    fonteSize: 20,
+    fontSize: 20,
     letterSpacing: '-0.06px'
   },
   h5: {
-    fonteSize: 16,
+    fontSize: 16,
     letterSpacing: '-0.05px'
   },
   h6: {
