@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
@@ -7,8 +7,12 @@ import Avatar from '@material-ui/core/Avatar';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import FormHelperText from '@material-ui/core/FormHelperText';
 import Link from '@material-ui/core/Link';
 import { useNavigate } from 'react-router-dom';
+import axios from '../../utils/axios';
+
+import authService from '../../services/authService';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -74,6 +78,36 @@ function Copyright() {
 function SignIn(props) {
   const classes = useStyles();
   const navigate = useNavigate();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+
+//   function handleSignIn() {
+//     // Chamada API da nossa aplicação.
+//     // Se retorno ok, direciona para home senão exibe erro.
+//     axios.post('/api/home/login')
+//       .then(response => {
+//         console.log(response.data.username)
+//       })
+//       .catch(error => {
+//         console.log(error)
+//       })
+//   }
+
+  async function handleSignIn() {
+    // Chamada API da nossa aplicação.
+    // Se retorno ok, direciona para home senão exibe erro.
+
+    try {
+      await authService.signIn(email, password)
+      // HTTP: 200
+      navigate('/');
+    } catch (error) {
+      setErrorMessage(error.response.data.message)
+
+    }
+  }
+
 
   return (
     <Grid container className={ classes.root }>
@@ -120,6 +154,8 @@ function SignIn(props) {
               label='E-mail'
               autoComplete='email'
               autoFocus
+              value={ email }
+              onChange={ (event) => setEmail(event.target.value) }
             />
             <TextField
               variant='outlined'
@@ -131,16 +167,24 @@ function SignIn(props) {
               type='password'
               id='password'
               autoComplete='current-password'
+              value={ password }
+              onChange={ (e) => setPassword(e.target.value) }
             />
             <Button 
               variant='contained' 
               color='primary'
               fullWidth
               className={ classes.btn }
-              onClick={() => navigate('/')}
+              onClick={handleSignIn}
             >
               ENTRAR
             </Button>
+            {
+              errorMessage &&
+              <FormHelperText error>
+                { errorMessage }
+              </FormHelperText>
+            }
             <Grid container direction='row'>
               <Link>Esqueceu sua senha?</Link>
               <Link>Não tem uma conta? Registre-se</Link>
