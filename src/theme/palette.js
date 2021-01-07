@@ -1,6 +1,6 @@
 import { colors } from '@material-ui/core'
 
-export default {
+ const palette = {
   primary: {
     dark: colors.indigo.A700,
     main: colors.indigo.A400,
@@ -21,3 +21,5 @@ export default {
     secondary: colors.blueGrey[600],
   },
 };
+
+export default palette;

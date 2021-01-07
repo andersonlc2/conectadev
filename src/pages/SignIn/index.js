@@ -10,9 +10,10 @@ import Button from '@material-ui/core/Button';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import Link from '@material-ui/core/Link';
 import { useNavigate } from 'react-router-dom';
-import axios from '../../utils/axios';
+import { useDispatch } from 'react-redux';
+import { signIn } from '../../actions/accountActions';
 
-import authService from '../../services/authService';
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -81,6 +82,8 @@ function SignIn(props) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+  const dispatch = useDispatch();
+
 
 //   function handleSignIn() {
 //     // Chamada API da nossa aplicação.
@@ -99,11 +102,13 @@ function SignIn(props) {
     // Se retorno ok, direciona para home senão exibe erro.
 
     try {
-      await authService.signIn(email, password)
-      // HTTP: 200
+      await dispatch(signIn(email, password))
+      
+      // await authService.signIn(email, password);
+      // // HTTP: 200
       navigate('/');
     } catch (error) {
-      setErrorMessage(error.response.data.message)
+      setErrorMessage(error.response.data.message);
 
     }
   }

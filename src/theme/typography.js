@@ -1,6 +1,5 @@
 
-
-export default {
+const typography = {
   h1: {
     fontSize: 35,
     letterSpacing: '-0.24px'
@@ -27,3 +26,5 @@ export default {
     letterSpacing: '-0.5px'
   },
 };
+
+export default typography;
