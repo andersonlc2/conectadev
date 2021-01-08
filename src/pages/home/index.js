@@ -1,11 +1,12 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import { Route, Routes } from 'react-router-dom';
+
 // import components
-import Header from './components/Header';
-import NavBar from './components/NavBar';
-import Feed from './components/Feed';
-import Container from '@material-ui/core/Container';
-import Box from '@material-ui/core/Box';
+import Header from './Header';
+import NewPost from '../Post/New';
+import Feed from '../Feed';
+
 
 // Hook para estilizar os componentes com o Material UI
 const useStyles = makeStyles({
@@ -28,14 +29,14 @@ function Home() {
     return (
         <div className={classes.root}>
             <Header />
-            <div className={classes.toolbar}></div>
+            <div className={classes.toolbar} />
             <main className={classes.main}>
-                <Container maxWidth="lg">
-                    <Box display="flex">
-                        <NavBar />
-                        <Feed />
-                    </Box>
-                </Container>
+                <Routes>
+                    <Route path='/' element={ <Feed /> }/>
+                    <Route path='/feed' element={ <Feed /> }/>
+                    <Route path='/post/new' element={ <NewPost /> }/>
+                    <Route path="*" element={<h4>Not Found: 404 !</h4> } />
+                </Routes>
             </main>
         </div>
     )

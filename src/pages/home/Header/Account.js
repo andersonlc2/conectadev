@@ -5,7 +5,7 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import { useNavigate } from 'react-router-dom';
 
-import { signOut } from '../../../../actions/accountActions';
+import { signOut } from '../../../actions/accountActions';
 
 function Account() {
   const account = useSelector(state => state.account);

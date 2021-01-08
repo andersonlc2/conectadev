@@ -9,7 +9,6 @@ import Auth from './components/Auth';
 import Home from './pages/Home';
 import SignIn from './pages/SignIn';
 
-
 import GuestRoute from './routes/GuestRoute';
 import './mock';
 
@@ -20,9 +19,8 @@ function App() {
         <BrowserRouter>
           <Auth>
             <Routes>
-              <Route path="/" element={<Home />} />
               <GuestRoute path="/sign-in" element={<SignIn />} />
-              <Route path="*" element={<h4>Not Found: 404 !</h4> } />
+              <Route path="//*" element={<Home />} />
             </Routes>
           </Auth>
         </BrowserRouter>
